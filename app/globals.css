@@ -1,26 +1,114 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --light: #fff;
+    --dark: #000;
+    --accent-1: #dc5935;
+    --accent-2: #d3ef76;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::-webkit-scrollbar {
+    display: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h1,
+h2 {
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(3rem, 4vw, 5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 2.25vw, 3rem);
+}
+
+p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    background-color: var(--dark);
+    overflow: hidden;
+}
+
+.outro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200svh;
+    --overlay-opacity: 0.35;
+    will-change: transform;
+}
+
+.hero-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    opacity: var(--overlay-opacity);
+    will-change: opacity;
+}
+
+.hero-img img {
+    will-change: filter;
+}
+
+.hero-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100svh;
+    background-color: var(--dark);
+    mask: linear-gradient(var(--light), var(--dark)),
+        url('/public/images/mask.png'),
+        center/50% no-repeat;
+    mask-composite: subtract;
+    -webkit-mask-composite: subtract;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.hero-grid-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    will-change: opacity;
 }
